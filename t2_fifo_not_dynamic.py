@@ -9,6 +9,7 @@ class FifoCircularBuffer:
         if (self.write_index - self.read_index) + 1 == self.cap:
             return False
         self.write_index += 1
+        self.read_index = self.read_index % self.cap
         self.queue[self.write_index % self.cap] = value
         return True
 
@@ -17,4 +18,5 @@ class FifoCircularBuffer:
             return
         next_value = self.queue[self.read_index % self.cap]
         self.read_index += 1
+        self.write_index = self.write_index % self.cap
         return next_value

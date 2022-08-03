@@ -15,6 +15,7 @@ class TestMergeSort(unittest.TestCase):
             cb.push(i + 1)
         cb.pull()
         self.assertTrue(cb.push(33))
+        self.assertEqual(cb.pull(), 2)
 
     def test_empty(self):
         cb = FifoCircularBuffer(1)
